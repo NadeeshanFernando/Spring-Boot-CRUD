@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin(origins = "*")
 public class FoodController {
 
     @Autowired
@@ -29,9 +30,14 @@ public class FoodController {
     }
 
 //    get foods by id
-    @GetMapping("/deleteFoods/{id}")
-    public void getFoodsById(@PathVariable Long id) {
-        foodService.getFoodByID(id);
+    @GetMapping("/getFoodsById/{id}")
+    public ResponseEntity<Optional<Food>> getFoodsById(@PathVariable Long id) {
+        Optional<Food> findFood = Optional.ofNullable(foodService.getFoodByID(id));
+        if(findFood.isPresent()){
+            return ResponseEntity.ok().body(findFood);
+        }else{
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
 //    update foods

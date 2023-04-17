@@ -17,7 +17,7 @@ public class Food {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @JsonIgnore
+//    @JsonIgnore
     public long id;
 
     @Column(name = "foodName")

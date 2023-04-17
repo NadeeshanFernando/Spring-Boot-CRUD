@@ -25,7 +25,7 @@ public class FoodService {
 
 //    get foods by id
     public Food getFoodByID(Long id) {
-        return foodRepository.findById(id).get();
+        return foodRepository.findById(id).orElse(null);
     }
 
 //    update foods
